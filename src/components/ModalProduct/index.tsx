@@ -17,16 +17,18 @@ import {
 } from "@chakra-ui/react";
 import * as React from "react";
 import styled from "styled-components";
-import { GlobalData } from "../../App";
+import { CItem, GlobalData } from "../../App";
 import { Detail } from "../../services/getData";
 
 export interface ModalProductProps {
   isOpen: boolean;
   onClose: () => void;
+  id: number;
   name: string;
   price: string;
   imageUrl: string;
   detail: Detail;
+  setCart: (cartArray: CItem[], setCart: (value: CItem[]) => void) => void;
 }
 
 const ButtonGroup = styled.div`
@@ -53,7 +55,7 @@ const Technical = styled.div`
 export function ModalProduct(props: ModalProductProps) {
   return (
     <GlobalData.Consumer>
-      {({ mode }) => (
+      {({ mode, cart, setCart }) => (
         <Modal isOpen={props.isOpen} onClose={props.onClose} size={"6xl"}>
           <ModalOverlay />
           <ModalContent backgroundColor={mode.background} color={mode.color}>
@@ -105,19 +107,19 @@ export function ModalProduct(props: ModalProductProps) {
                     <Text fontSize="4xl" fontWeight="bold">
                       TECHNICAL SPECIFICATIONS
                     </Text>
-                    <Config>
+                    <Config style={{ borderColor: mode.color }}>
                       <Text>Displayment:</Text>
                       <Text>{props.detail.technical.displayment}</Text>
                     </Config>
-                    <Config>
+                    <Config style={{ borderColor: mode.color }}>
                       <Text>Max. Power:</Text>
                       <Text>{props.detail.technical.maxPower}</Text>
                     </Config>
-                    <Config>
+                    <Config style={{ borderColor: mode.color }}>
                       <Text>Top speed:</Text>
                       <Text>{props.detail.technical.topspeed}</Text>
                     </Config>
-                    <Config>
+                    <Config style={{ borderColor: mode.color }}>
                       <Text>Acceleration 0-100 km/h (MPH 0-62):</Text>
                       <Text>{props.detail.technical.acceleration}</Text>
                     </Config>
@@ -131,9 +133,7 @@ export function ModalProduct(props: ModalProductProps) {
                       color="black"
                       mr={3}
                       w="50%"
-                      onClick={() => {
-                        console.log(props.detail.color);
-                      }}>
+                      onClick={() => props.setCart(cart, setCart)}>
                       Add to Cart
                     </Button>
                     <Button

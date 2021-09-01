@@ -15,9 +15,10 @@ export function Product(props: ProductProps) {
         <Flex
           wrap="wrap"
           justify="space-evenly"
+          alignItems="flex-start"
           backgroundColor={mode.background}
           pb="50px"
-          height="auto">
+          height="100%">
           {productData.map((element: Item) => {
             return <ProductItem key={element.id} dataItem={element} />;
           })}

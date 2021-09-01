@@ -16,8 +16,8 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import * as React from "react";
-import { GlobalData } from "../../App";
+import React from "react";
+import { CItem, GlobalData } from "../../App";
 import { CartItem } from "../CartItem";
 export interface ModalCartProps {
   isOpen: boolean;
@@ -25,9 +25,19 @@ export interface ModalCartProps {
 }
 
 export function ModalCart(props: ModalCartProps) {
+  const totalPrice = (cart: CItem[]) => {
+    let total: number = 0;
+    cart.forEach((element: CItem) => {
+      let res: number = parseFloat(
+        element.price.substring(0, element.price.length - 1),
+      );
+      total += res * element.quantity;
+    });
+    return total;
+  };
   return (
     <GlobalData.Consumer>
-      {({ mode }) => (
+      {({ mode, cart }) => (
         <Modal isOpen={props.isOpen} onClose={props.onClose} size="6xl">
           <ModalOverlay />
           <ModalContent backgroundColor={mode.background} color={mode.color}>
@@ -45,14 +55,13 @@ export function ModalCart(props: ModalCartProps) {
                     <Th isNumeric color={mode.color}>
                       Price
                     </Th>
+                    <Th color={mode.color}>Action</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
-                  <CartItem />
-                  <CartItem />
-                  <CartItem />
-                  <CartItem />
-                  <CartItem />
+                  {cart.map((element: CItem, index: number) => {
+                    return <CartItem data={element} key={element.id} />;
+                  })}
                 </Tbody>
                 <Tfoot>
                   <Tr>
@@ -62,8 +71,9 @@ export function ModalCart(props: ModalCartProps) {
                       TOTAL:
                     </Th>
                     <Th isNumeric fontSize="2xl" color={mode.color}>
-                      200$
+                      {totalPrice(cart)}$
                     </Th>
+                    <Th></Th>
                   </Tr>
                 </Tfoot>
               </Table>

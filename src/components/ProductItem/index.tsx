@@ -1,7 +1,7 @@
 /** @format */
 
 import { Button, Flex, Image, Text, useDisclosure } from "@chakra-ui/react";
-import { GlobalData } from "../../App";
+import { CItem, GlobalData } from "../../App";
 import { Item } from "../../services/getData";
 import { ModalProduct } from "../ModalProduct";
 
@@ -11,11 +11,36 @@ export interface ProductItemProps {
 
 export function ProductItem(props: ProductItemProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const handelClickAdd = (
+    cartArray: CItem[],
+    setCart: (value: CItem[]) => void,
+  ) => {
+    let cart: CItem = {
+      id: props.dataItem.id,
+      image: props.dataItem.imageUrl,
+      name: props.dataItem.name,
+      quantity: 1,
+      price: props.dataItem.price,
+    };
+    let tempCartArray: CItem[] = cartArray;
+    let check: boolean = false;
+    tempCartArray.forEach((element: CItem) => {
+      if (element.id === cart.id) {
+        element.quantity++;
+        check = true;
+      }
+    });
+    if (!check) {
+      tempCartArray.push(cart);
+    }
+    setCart(tempCartArray);
+  };
   return (
     <GlobalData.Consumer>
-      {({ mode }) => (
+      {({ mode, cart, setCart }) => (
         <Flex
           flexDirection="column"
+          justifyContent="flex-start"
           w="500px"
           mt="20px"
           p="10px"
@@ -35,7 +60,10 @@ export function ProductItem(props: ProductItemProps) {
             Price: {props.dataItem.price}
           </Text>
           <Flex justify="center">
-            <Button backgroundColor="#FFD700" m="5px">
+            <Button
+              backgroundColor="#FFD700"
+              m="5px"
+              onClick={() => handelClickAdd(cart, setCart)}>
               Add to Cart
             </Button>
             <Button
@@ -50,10 +78,12 @@ export function ProductItem(props: ProductItemProps) {
           <ModalProduct
             isOpen={isOpen}
             onClose={onClose}
+            id={props.dataItem.id}
             name={props.dataItem.name}
             price={props.dataItem.price}
             detail={props.dataItem.detail}
             imageUrl={props.dataItem.imageUrl}
+            setCart={() => handelClickAdd(cart, setCart)}
           />
         </Flex>
       )}
