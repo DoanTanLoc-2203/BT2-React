@@ -45,7 +45,14 @@ export function ProductItem(props: ProductItemProps) {
           Detail
         </Button>
       </Flex>
-      <ModalProduct isOpen={isOpen} onClose={onClose} data={props.dataItem} />
+      <ModalProduct
+        isOpen={isOpen}
+        onClose={onClose}
+        name={props.dataItem.name}
+        price={props.dataItem.price}
+        detail={props.dataItem.detail}
+        imageUrl={props.dataItem.imageUrl}
+      />
     </Flex>
   );
 }

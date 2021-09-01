@@ -2,13 +2,13 @@
 
 export interface Tech {
   displayment: string;
-  maxpower: string;
+  maxPower: string;
   topspeed: string;
   acceleration: string;
 }
 
 export interface Detail {
-  overview: string;
+  overView: string;
   color: string[];
   technical: Tech;
 }
@@ -18,16 +18,7 @@ export interface Item {
   name: string;
   price: string;
   imageUrl: string;
-  detail: {
-    overview: string;
-    color: string[];
-    technical: {
-      displayment: string;
-      maxpower: string;
-      topspeed: string;
-      acceleration: string;
-    };
-  };
+  detail: Detail;
 }
 
 export async function getData(apiUrl: string) {

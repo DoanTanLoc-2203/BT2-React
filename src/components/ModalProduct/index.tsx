@@ -6,6 +6,7 @@ import {
   Image,
   Modal,
   ModalBody,
+  ModalCloseButton,
   ModalContent,
   ModalHeader,
   ModalOverlay,
@@ -13,16 +14,18 @@ import {
   RadioGroup,
   Stack,
   Text,
-  ModalCloseButton,
 } from "@chakra-ui/react";
 import * as React from "react";
 import styled from "styled-components";
-import { Detail, Item } from "../../services/getData";
+import { Detail } from "../../services/getData";
 
 export interface ModalProductProps {
   isOpen: boolean;
   onClose: () => void;
-  data: Item;
+  name: string;
+  price: string;
+  imageUrl: string;
+  detail: Detail;
 }
 
 const ButtonGroup = styled.div`
@@ -47,13 +50,12 @@ const Technical = styled.div`
   margin-bottom: 10px;
 `;
 export function ModalProduct(props: ModalProductProps) {
-  const detai: Detail = props.data.detail;
   return (
     <Modal isOpen={props.isOpen} onClose={props.onClose} size={"6xl"}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader fontSize="6xl" fontWeight="bold">
-          {props.data.name}
+          {props.name}
           <ModalCloseButton _hover={{ backgroundColor: "#FFD700" }} />
         </ModalHeader>
         <ModalBody>
@@ -62,7 +64,7 @@ export function ModalProduct(props: ModalProductProps) {
               borderRadius="10px"
               boxSize="100%"
               objectFit="scale-down"
-              src={props.data.imageUrl}
+              src={props.imageUrl}
               alt="car image"
             />
             <Flex flexDirection="column" w="100%">
@@ -71,21 +73,28 @@ export function ModalProduct(props: ModalProductProps) {
                   OVERVIEW
                 </Text>
                 <Text fontSize="2xl" textAlign="justify">
-                  {detai.overview}
+                  {props.detail.overView}
                 </Text>
               </Overview>
               <Color>
                 <Text fontSize="4xl" fontWeight="bold">
                   COLOR
                 </Text>
-                <RadioGroup defaultValue="1">
+                <RadioGroup defaultValue="0">
                   <Stack spacing={5} direction="row">
-                    <Radio colorScheme="blue" value="1" size="lg">
-                      Blue
-                    </Radio>
-                    <Radio colorScheme="green" value="2" size="lg">
-                      Green
-                    </Radio>
+                    {props.detail.color.map(
+                      (element: string, index: number) => {
+                        return (
+                          <Radio
+                            colorScheme={element}
+                            value={index.toString()}
+                            size="lg"
+                            key={index}>
+                            {element}
+                          </Radio>
+                        );
+                      },
+                    )}
                   </Stack>
                 </RadioGroup>
               </Color>
@@ -95,23 +104,23 @@ export function ModalProduct(props: ModalProductProps) {
                 </Text>
                 <Config>
                   <Text>Displayment:</Text>
-                  <Text>6498 cm³</Text>
+                  <Text>{props.detail.technical.displayment}</Text>
                 </Config>
                 <Config>
-                  <Text>Max. Power:</Text>{" "}
-                  <Text>566 kW (770 CV) at 8.500 rpm</Text>
+                  <Text>Max. Power:</Text>
+                  <Text>{props.detail.technical.maxPower}</Text>
                 </Config>
                 <Config>
                   <Text>Top speed:</Text>
-                  <Text>&gt;350 km/h</Text>{" "}
+                  <Text>{props.detail.technical.topspeed}</Text>
                 </Config>
                 <Config>
-                  <Text>Acceleration 0-100 km/h (MPH 0-62):</Text>{" "}
-                  <Text>2.8 s</Text>
+                  <Text>Acceleration 0-100 km/h (MPH 0-62):</Text>
+                  <Text>{props.detail.technical.acceleration}</Text>
                 </Config>
               </Technical>
               <Text fontSize="4xl" mb="10px" fontWeight="bold">
-                PRICE: {props.data.price}
+                PRICE: {props.price}
               </Text>
               <ButtonGroup>
                 <Button
@@ -120,7 +129,7 @@ export function ModalProduct(props: ModalProductProps) {
                   mr={3}
                   w="50%"
                   onClick={() => {
-                    console.log(props.data.detail.overview);
+                    console.log(props.detail.color);
                   }}>
                   Add to Cart
                 </Button>
