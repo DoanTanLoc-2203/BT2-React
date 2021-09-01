@@ -10,12 +10,12 @@ export function Search(props: SearchProps) {
   const [textSearch, settextSearch] = useState<string>("");
   return (
     <GlobalData.Consumer>
-      {({ setText }) => (
+      {({ setText, mode }) => (
         <Wrap justify="center">
           <WrapItem>
             <Input
               placeholder="Model name..."
-              color="white"
+              color={mode.color}
               focusBorderColor="#FFD700"
               onChange={(event) => {
                 settextSearch(event.target.value);

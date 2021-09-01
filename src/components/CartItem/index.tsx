@@ -23,13 +23,14 @@ export function CartItem(props: CartItemProps) {
         />
       </Td>
       <Td>Lamboghini Aventador</Td>
-      <Td display="flex" justifyContent="center">
+      <Td>
         <NumberInput
           step={1}
           defaultValue={1}
           min={1}
           max={10}
           w="20%"
+          m="auto"
           focusBorderColor="#FFD700">
           <NumberInputField />
           <NumberInputStepper>

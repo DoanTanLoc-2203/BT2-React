@@ -11,11 +11,11 @@ export interface ProductProps {}
 export function Product(props: ProductProps) {
   return (
     <GlobalData.Consumer>
-      {({ productData }) => (
+      {({ productData, mode }) => (
         <Flex
           wrap="wrap"
           justify="space-evenly"
-          backgroundColor="#020202"
+          backgroundColor={mode.background}
           pb="50px"
           height="auto">
           {productData.map((element: Item) => {

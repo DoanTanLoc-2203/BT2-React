@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import styled from "styled-components";
+import { GlobalData } from "../../App";
 export interface ButtonGroupProps {}
 
 const Button = styled.button`
@@ -15,11 +16,15 @@ const Button = styled.button`
 
 export function ButtonGroup(props: ButtonGroupProps) {
   return (
-    <div>
-      <Button>MODELS</Button>
-      <Button>CUSTOM SOLUTION</Button>
-      <Button>OWNERSHIP</Button>
-      <Button>MOTORSPORT</Button>
-    </div>
+    <GlobalData.Consumer>
+      {({ mode }) => (
+        <div>
+          <Button style={{ color: mode.color }}>MODELS</Button>
+          <Button style={{ color: mode.color }}>CUSTOM SOLUTION</Button>
+          <Button style={{ color: mode.color }}>OWNERSHIP</Button>
+          <Button style={{ color: mode.color }}>MOTORSPORT</Button>
+        </div>
+      )}
+    </GlobalData.Consumer>
   );
 }
