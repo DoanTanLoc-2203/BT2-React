@@ -1,91 +1,35 @@
 /** @format */
-
 import { ChakraProvider } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { bindActionCreators } from "redux";
 import "./App.css";
-import { Footer } from "./components/Footer";
-import { MenuUser } from "./components/MenuUser";
-import { Product } from "./components/Product";
-import { getData, Item } from "./services/getData";
-
-interface Store {
-  productData: Item[];
-  mode: Mode;
-  cart: CItem[];
-  setText: (value: string) => void;
-  setMode: (value: Mode) => void;
-  setCart: (value: CItem[]) => void;
-}
-
-interface Mode {
-  background: string;
-  color: string;
-  backgroundItem: string;
-}
-export interface CItem {
-  id: number;
-  image: string;
-  name: string;
-  quantity: number;
-  price: string;
-}
-export const darkMode: Mode = {
-  background: "#020202",
-  color: "white",
-  backgroundItem: "#222222",
-};
-export const lightMode: Mode = {
-  background: "white",
-  color: "#020202",
-  backgroundItem: "#F2F2F2",
-};
-export const GlobalData = React.createContext<Store>({
-  productData: [],
-  mode: lightMode,
-  cart: [],
-  setText: () => {},
-  setMode: () => {},
-  setCart: () => {},
-});
+import { Post } from "./pages/Post";
+import { ProductStore } from "./pages/ProductStore";
+import * as ActionCreator from "./store/actionCreator";
 
 function App() {
-  const [data, setdata] = useState<Item[]>([]);
-  const [dataDisplay, setdataDisplay] = useState<Item[]>([]);
-  const [textSearch, settextSearch] = useState<string>("");
-  const [mode, setmode] = useState<Mode>(lightMode);
-  const [cart, setcart] = useState<CItem[]>([]);
+  const dispatch = useDispatch();
+  const { fetchData } = bindActionCreators(ActionCreator, dispatch);
   useEffect(() => {
-    getData("https://jsonblob.com/api/882555877874413568").then((dataRes) => {
-      setdata(dataRes);
-      setdataDisplay(dataRes);
-    });
-  }, []);
-  useEffect(() => {
-    let tempData: Item[] = [];
-    data.forEach((element: Item) => {
-      if (element.name.indexOf(textSearch) >= 0) {
-        tempData.push(element);
-      }
-    });
-    setdataDisplay(tempData);
-  }, [textSearch, data]);
+    fetchData("https://jsonblob.com/api/882555877874413568");
+  }, [fetchData]);
+
   return (
     <ChakraProvider>
-      <GlobalData.Provider
-        value={{
-          productData: dataDisplay,
-          setText: settextSearch,
-          mode: mode,
-          setMode: setmode,
-          setCart: setcart,
-          cart: cart,
-        }}>
+      <Router>
         <div className="App">
-          <MenuUser />
-          <Product />
-          <Footer />
+          <Switch>
+            <Route exact path="/">
+              <ProductStore />
+            </Route>
+            <Route path="/post">
+              <Post />
+            </Route>
+          </Switch>
         </div>
-      </GlobalData.Provider>
+      </Router>
     </ChakraProvider>
   );
 }

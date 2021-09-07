@@ -12,78 +12,58 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import React from "react";
-import { CItem, GlobalData } from "../../App";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Cart } from "../../interface";
+import * as ActionCreator from "../../store/actionCreator";
 export interface CartItemProps {
-  data: CItem;
+  data: Cart;
 }
 
 export function CartItem(props: CartItemProps) {
-  const handleDelete = (cart: CItem[], setCart: (value: CItem[]) => void) => {
-    let temp: CItem[] = cart.filter((obj) => obj.id !== props.data.id);
-    setCart(temp);
-  };
-  const caculatePrice = (price: string, quantity: number) => {
-    let res: number = parseFloat(price.substring(0, price.length - 1));
-    return res * quantity;
-  };
-  const handleChangeQuantity = (
-    value: number,
-    cart: CItem[],
-    setCart: (value: CItem[]) => void,
-  ) => {
-    let temp: CItem[] = Object.assign([], cart);
-    for (let i = 0; i < temp.length; i++) {
-      if (temp[i].id === props.data.id) {
-        temp[i].quantity = value;
-        break;
-      }
-    }
-    setCart(temp);
-  };
+  const dispatch = useDispatch();
+  const { deleteCart, updateCart } = bindActionCreators(
+    ActionCreator,
+    dispatch,
+  );
   return (
-    <GlobalData.Consumer>
-      {({ cart, setCart }) => (
-        <Tr>
-          <Td>
-            <Avatar name="image" src={props.data.image} size="xl" />
-          </Td>
-          <Td>{props.data.name}</Td>
-          <Td>
-            <NumberInput
-              step={1}
-              defaultValue={props.data.quantity}
-              min={1}
-              max={10}
-              w="30%"
-              m="auto"
-              focusBorderColor="#FFD700"
-              onChange={(valueString: string) => {
-                handleChangeQuantity(parseInt(valueString), cart, setCart);
-              }}>
-              <NumberInputField />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-          </Td>
-          <Td isNumeric>
-            {caculatePrice(props.data.price, props.data.quantity)}$
-          </Td>
-          <Td>
-            <Button
-              backgroundColor="red.500"
-              color="white"
-              _hover={{
-                color: "black",
-                backgroundColor: "#F2F2F2",
-              }}
-              onClick={() => handleDelete(cart, setCart)}>
-              Delete
-            </Button>
-          </Td>
-        </Tr>
-      )}
-    </GlobalData.Consumer>
+    <Tr>
+      <Td>
+        <Avatar name="image" src={props.data.imageUrl} size="xl" />
+      </Td>
+      <Td>{props.data.name}</Td>
+      <Td>
+        <NumberInput
+          step={1}
+          defaultValue={props.data.quantity}
+          min={1}
+          max={10}
+          w="30%"
+          m="auto"
+          focusBorderColor="#FFD700"
+          onChange={(valueString: string) =>
+            updateCart(props.data.id, parseInt(valueString))
+          }>
+          <NumberInputField />
+          <NumberInputStepper>
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
+      </Td>
+      <Td isNumeric>{props.data.price}</Td>
+      <Td>
+        <Button
+          backgroundColor="red.500"
+          color="white"
+          _hover={{
+            color: "black",
+            backgroundColor: "#F2F2F2",
+          }}
+          onClick={() => deleteCart(props.data.id)}>
+          Delete
+        </Button>
+      </Td>
+    </Tr>
   );
 }

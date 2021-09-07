@@ -1,0 +1,56 @@
+1. Primary component:
+  - Muốn sử dụng thì phải bọc App trong rounter
+  - Có 3 component chính trong react router:
+    + Routers: <BrowserRouter> và <HashRouter>
+    + Route matchers: <Route> và <Switch>
+    + Navigation: <Link>, <NavLink>, và <Redirect>
+  - Sự khác biệt giữa <BrowserRouter> và <HashRouter>: dựa vào cách lưu URL và giao tiếp với webserver
+    + // <BrowserRouter>
+      http://example.com/about
+      // <HashRouter>
+      http://example.com/#/about
+    + <BrowserRouter> được sử dụng phổ biến hơn, nó sử dụng History API có trong HTML5 để theo dõi lịch sử bộ định tuyến.
+    + <HashRouter> sử dụng hash của URL (window.location.hash) để ghi nhớ mọi thứ.
+    + <MemoryRouter> lúc chuyển path thì URL sẽ không bị thay đổi.
+2. Router matcher: Switch và route
+  - Nếu sài route ko thì nó sẽ render ra những path 1 hoặc nhiều path phù hợp.
+  - Nếu bọc trong Switch thì nó chỉ render ra một cái path phù hợp tính từ trên xuống nên ngta thường đặt path '/' ở cuối.
+  - Từ khóa exact để chỉ định rõ đường dẫn: ví dụ: /(home) và /about(about) nếu ko dùng exact thì nó sẽ render ra cả 2 home và about.
+                                                    vì / là con của thằng /about 
+3. Navigation: <Link>, <NavLink>, và <Redirect>:
+  - Xài link thay vì <a> để ko bị reload lại trang web.
+  - <NavLink> giống như <Link> nhưng nó sẽ thêm một class active vô khi mà đúng path. class active mình tự định nghĩa.
+  - <Redirect> sử dụng khi muốn điều hướng tới một path khác khi sau khi thực hiện một hành động nào đó, vd như click, setstate
+4. Custom Link:
+  - Sử dụng khi muốn thay đổi cách active class theo ý muốn.
+  - Viết lại component:
+    vd: function OldSchoolMenuLink({ label, to, activeOnlyWhenExact }) {
+            let match = useRouteMatch({
+              path: to,
+              exact: activeOnlyWhenExact
+            });
+
+            return (
+              <div className={match ? "active" : ""}>
+                {match && "> "}
+                <Link to={to}>{label}</Link>
+              </div>
+            );
+          }
+5. Preventing Transitions:
+  - Sử dụng khi ta muốn ngăn chặn việc chuyển trang khi user chưa hoàn thành một thao tác nào đó.
+  - event.preventDefault(); ngăn việc gửi GET/POST request của form
+6. Query Parameters:
+  - Sử dụng khi muốn get data từ URL.
+7. Hooks:
+  - useHistory: nó sẽ điều hướng về url mà mình push vào history.
+  - useLocation: nó sẽ trả về một location object (pathname: "/topics", search: "", hash: "", state: undefined, key: "43hmzy")
+  - useParams: trả về một object gồm key/value khớp với lại URL parameter:
+                vd : /blog/:slug/:name => /blog/abc/DEF => slug = abc, name= DEF
+                    let { slug, name } = useParams<{ slug: string; name: string }>();
+  - useRouteMatch: 
+8. Promise: dùng để xử lí bất đồng bộ: resolve -> then 
+                                       reject -> catch
+9. middelware: là một fuction chèn vào trước reducer và sau khi dispatch action,
+                + căn thiệp vào action trước khi nó gửi tới reducer, vd: cớ thể sửa đổi payload của action
+10. code splitting: là một trong những kỹ thuật giúp tăng tốc thời gian load Javascript của React App. 

@@ -2,9 +2,7 @@
 
 import * as React from "react";
 import styled from "styled-components";
-import { GlobalData } from "../../App";
-export interface ButtonGroupProps {}
-
+import { Link } from "react-router-dom";
 const Button = styled.button`
   margin-left: 10px;
   margin-right: 10px;
@@ -14,17 +12,17 @@ const Button = styled.button`
   }
 `;
 
-export function ButtonGroup(props: ButtonGroupProps) {
+export function ButtonGroup() {
   return (
-    <GlobalData.Consumer>
-      {({ mode }) => (
-        <div>
-          <Button style={{ color: mode.color }}>MODELS</Button>
-          <Button style={{ color: mode.color }}>CUSTOM SOLUTION</Button>
-          <Button style={{ color: mode.color }}>OWNERSHIP</Button>
-          <Button style={{ color: mode.color }}>MOTORSPORT</Button>
-        </div>
-      )}
-    </GlobalData.Consumer>
+    <div>
+      <Button>
+        <Link to="/">HOME</Link>
+      </Button>
+      <Button>
+        <Link to="/post">POST</Link>
+      </Button>
+      <Button>OWNERSHIP</Button>
+      <Button>MOTORSPORT</Button>
+    </div>
   );
 }

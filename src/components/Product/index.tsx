@@ -2,28 +2,23 @@
 
 import * as React from "react";
 import { Flex } from "@chakra-ui/react";
-import { GlobalData } from "../../App";
 import { ProductItem } from "../ProductItem";
-import { Item } from "../../services/getData";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/reducers";
 
-export interface ProductProps {}
-
-export function Product(props: ProductProps) {
+export function Product() {
+  const productList = useSelector((state: RootState) => state.fillterSearch);
   return (
-    <GlobalData.Consumer>
-      {({ productData, mode }) => (
-        <Flex
-          wrap="wrap"
-          justify="space-evenly"
-          alignItems="flex-start"
-          backgroundColor={mode.background}
-          pb="50px"
-          height="100%">
-          {productData.map((element: Item) => {
-            return <ProductItem key={element.id} dataItem={element} />;
-          })}
-        </Flex>
-      )}
-    </GlobalData.Consumer>
+    <Flex
+      wrap="wrap"
+      justify="space-evenly"
+      alignItems="flex-start"
+      backgroundColor="#020202"
+      pb="50px"
+      height="100%">
+      {productList.map((element) => {
+        return <ProductItem key={element.id} data={element} />;
+      })}
+    </Flex>
   );
 }
