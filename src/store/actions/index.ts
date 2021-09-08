@@ -1,6 +1,6 @@
 /** @format */
 
-import { Cart, Item } from "./../../interface/index";
+import { Cart, Item, PostItem } from "./../../interface/index";
 import { ActionType } from "../constants";
 
 export interface SetProductListAction {
@@ -33,10 +33,27 @@ export interface UpdateCart {
   payload: { id: number; value: number };
 }
 
+export interface SetPostList {
+  type: ActionType.SET_POSTLIST;
+  payload: PostItem[];
+}
+
+export interface ErrorPostList {
+  type: ActionType.ERROR_POSTLIST;
+  payload: string;
+}
+
+export interface AddToPost {
+  type: ActionType.ADD_TOPOST;
+  payload: PostItem;
+}
 export type Action =
   | SetProductListAction
   | ErrorGetProductList
   | FillterProductList
   | AddToCart
   | DeleteCart
-  | UpdateCart;
+  | UpdateCart
+  | SetPostList
+  | ErrorPostList
+  | AddToPost;

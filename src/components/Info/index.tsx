@@ -23,13 +23,12 @@ export function Info(props: InfoProps) {
         <IconButton
           mr="10px"
           backgroundColor="#FFD700"
-          color="black"
           aria-label="Search database"
           icon={<FaShoppingCart />}
           onClick={onOpen}
         />
-        <React.Suspense fallback={<div>loadding...</div>}>
-          <ModalCart isOpen={isOpen} onClose={onClose} />
+        <React.Suspense fallback={null}>
+          {isOpen ? <ModalCart isOpen={isOpen} onClose={onClose} /> : null}
         </React.Suspense>
       </WrapItem>
       <WrapItem>
@@ -38,9 +37,7 @@ export function Info(props: InfoProps) {
             name="Dan Abrahmov"
             src="https://rockandbluescruise.com/wp-content/uploads/2020/10/tieu-su-ronaldo.jpg"
           />
-          <Text fontSize="sm" color="white">
-            Hello, Loc
-          </Text>
+          <Text fontSize="sm">Hello, Loc</Text>
         </Flex>
       </WrapItem>
     </Wrap>

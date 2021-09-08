@@ -59,8 +59,8 @@ export default function ModalCart(props: ModalCartProps) {
             </Tbody>
             <Tfoot>
               <Tr>
-                <Th></Th>
-                <Th></Th>
+                {/* <Th></Th>
+                <Th></Th> */}
                 <Th fontSize="2xl">TOTAL:</Th>
                 <Th isNumeric fontSize="2xl">
                   {totalCart()}

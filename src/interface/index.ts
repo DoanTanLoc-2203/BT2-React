@@ -28,3 +28,11 @@ export interface Cart {
   quantity: number;
   price: string;
 }
+
+export interface PostItem {
+  id: string;
+  name: string;
+  postat: string;
+  tag: string;
+  content: string;
+}

@@ -15,8 +15,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import * as React from "react";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 import styled from "styled-components";
 import { Item } from "../../interface";
+import { addToCart } from "../../store/actionCreator";
 
 export interface ModalProductProps {
   isOpen: boolean;
@@ -45,7 +48,9 @@ const Color = styled.div`
 const Technical = styled.div`
   margin-bottom: 10px;
 `;
-export function ModalProduct(props: ModalProductProps) {
+export default function ModalProduct(props: ModalProductProps) {
+  const dispatch = useDispatch();
+  const { addToCart: add } = bindActionCreators({ addToCart }, dispatch);
   return (
     <Modal isOpen={props.isOpen} onClose={props.onClose} size={"6xl"}>
       <ModalOverlay />
@@ -105,7 +110,20 @@ export function ModalProduct(props: ModalProductProps) {
                 PRICE: {props.data.price}
               </Text>
               <ButtonGroup>
-                <Button backgroundColor="#FFD700" color="black" mr={3} w="50%">
+                <Button
+                  backgroundColor="#FFD700"
+                  color="black"
+                  mr={3}
+                  w="50%"
+                  onClick={() => {
+                    add({
+                      id: props.data.id,
+                      imageUrl: props.data.imageUrl,
+                      name: props.data.name,
+                      quantity: 1,
+                      price: props.data.price,
+                    });
+                  }}>
                   Add to Cart
                 </Button>
                 <Button

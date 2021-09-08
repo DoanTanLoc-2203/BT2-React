@@ -1,6 +1,6 @@
 /** @format */
 
-/** @format */
+import { PostItem } from "./../../interface/index";
 import axios from "axios";
 import { Dispatch } from "redux";
 import { Cart, Item } from "../../interface";
@@ -67,6 +67,42 @@ export const updateCart = (id: number, value: number) => {
     dispatch({
       type: ActionType.UPDATE_CART,
       payload: { id: id, value: value },
+    });
+  };
+};
+
+export const setPostList = (list: PostItem[]) => {
+  return {
+    type: ActionType.SET_POSTLIST,
+    payload: list,
+  };
+};
+
+export const errorPostList = (list: PostItem[]) => {
+  return {
+    type: ActionType.SET_POSTLIST,
+    payload: list,
+  };
+};
+export const fecthDataPost = (url: string) => {
+  return (dispatch: Dispatch) => {
+    axios
+      .get(url)
+      .then((res) => {
+        const data: PostItem[] = res.data;
+        dispatch(setPostList(data));
+      })
+      .catch((err) => {
+        dispatch(errorPostList(err.toString()));
+      });
+  };
+};
+
+export const addToPost = (data: PostItem) => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.ADD_TOPOST,
+      payload: data,
     });
   };
 };

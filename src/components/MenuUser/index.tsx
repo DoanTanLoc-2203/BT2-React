@@ -12,7 +12,6 @@ export function MenuUser(props: MenuProps) {
     <Wrap
       height="auto"
       justify="space-between"
-      backgroundColor="#020202"
       align="center"
       p="10px"
       borderBottom="5px solid #FFD700">

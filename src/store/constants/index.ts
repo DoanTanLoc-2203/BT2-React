@@ -7,4 +7,7 @@ export enum ActionType {
   ADD_TOCART = "AddToCart",
   DELETE_CART = "DeleteItem",
   UPDATE_CART = "UpdateCart",
+  SET_POSTLIST = "SetPostList",
+  ERROR_POSTLIST = "ErrorPostList",
+  ADD_TOPOST = "AddToPostList",
 }

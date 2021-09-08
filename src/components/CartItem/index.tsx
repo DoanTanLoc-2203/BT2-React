@@ -1,8 +1,8 @@
 /** @format */
 
 import {
-  Avatar,
   Button,
+  Image,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
@@ -15,21 +15,21 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Cart } from "../../interface";
-import * as ActionCreator from "../../store/actionCreator";
+import { deleteCart, updateCart } from "../../store/actionCreator";
 export interface CartItemProps {
   data: Cart;
 }
 
 export function CartItem(props: CartItemProps) {
   const dispatch = useDispatch();
-  const { deleteCart, updateCart } = bindActionCreators(
-    ActionCreator,
+  const { deleteCart: del, updateCart: up } = bindActionCreators(
+    { deleteCart, updateCart },
     dispatch,
   );
   return (
     <Tr>
       <Td>
-        <Avatar name="image" src={props.data.imageUrl} size="xl" />
+        <Image src={props.data.imageUrl} objectFit="fill" />
       </Td>
       <Td>{props.data.name}</Td>
       <Td>
@@ -38,11 +38,11 @@ export function CartItem(props: CartItemProps) {
           defaultValue={props.data.quantity}
           min={1}
           max={10}
-          w="30%"
+          // w="40%"
           m="auto"
           focusBorderColor="#FFD700"
           onChange={(valueString: string) =>
-            updateCart(props.data.id, parseInt(valueString))
+            up(props.data.id, parseInt(valueString))
           }>
           <NumberInputField />
           <NumberInputStepper>
@@ -60,7 +60,7 @@ export function CartItem(props: CartItemProps) {
             color: "black",
             backgroundColor: "#F2F2F2",
           }}
-          onClick={() => deleteCart(props.data.id)}>
+          onClick={() => del(props.data.id)}>
           Delete
         </Button>
       </Td>
