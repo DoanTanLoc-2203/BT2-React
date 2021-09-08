@@ -7,14 +7,14 @@ import { bindActionCreators } from "redux";
 import "./App.css";
 import { Post } from "./pages/Post";
 import { ProductStore } from "./pages/ProductStore";
-import * as ActionCreator from "./store/actionCreator";
+import { fetchData } from "./store/actionCreator";
 
 function App() {
   const dispatch = useDispatch();
-  const { fetchData } = bindActionCreators(ActionCreator, dispatch);
+  const { fetchData: data } = bindActionCreators({ fetchData }, dispatch);
   useEffect(() => {
-    fetchData("https://jsonblob.com/api/882555877874413568");
-  }, [fetchData]);
+    data("https://jsonblob.com/api/882555877874413568");
+  }, [data]);
 
   return (
     <ChakraProvider>

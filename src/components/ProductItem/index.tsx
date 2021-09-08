@@ -31,6 +31,7 @@ export function ProductItem(props: ProductItemProps) {
         objectFit="cover"
         src={props.data.imageUrl}
         alt="car image"
+        fallbackSrc="https://via.placeholder.com/2048x1152.png"
       />
       <Text fontSize="4xl" fontWeight="bold">
         {props.data.name}

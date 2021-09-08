@@ -26,7 +26,7 @@ export interface ModalCartProps {
   onClose: () => void;
 }
 
-export function ModalCart(props: ModalCartProps) {
+export default function ModalCart(props: ModalCartProps) {
   const data: Cart[] = useSelector((state: RootState) => state.cartList);
   const totalCart = () => {
     let total: number = 0;
