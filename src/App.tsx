@@ -5,14 +5,14 @@ import {
   extendTheme,
   ThemeConfig,
 } from "@chakra-ui/react";
-import React, { useEffect, lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import "./App.css";
 import { Footer } from "./components/Footer";
 import { MenuUser } from "./components/MenuUser";
-import { fetchData, fecthDataPost } from "./store/actionCreator";
+import { fecthDataPost, fetchData } from "./store/actionCreator";
 
 const Product = lazy(() => import("./components/Product"));
 const Post = lazy(() => import("./components/Post"));
@@ -31,12 +31,11 @@ function App() {
     { fetchData, fecthDataPost },
     dispatch,
   );
-
   useEffect(() => {
-    data("https://jsonblob.com/api/882555877874413568");
+    data("product");
   }, [data]);
   useEffect(() => {
-    getdata("https://jsonblob.com/api/884987287335878656");
+    getdata("posts");
   }, [getdata]);
   return (
     <ChakraProvider>

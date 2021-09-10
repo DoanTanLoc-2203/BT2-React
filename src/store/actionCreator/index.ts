@@ -1,5 +1,8 @@
 /** @format */
 
+import { repositoryFactory } from "./../../repository/repositoryFactory";
+/** @format */
+
 import { PostItem } from "./../../interface/index";
 import axios from "axios";
 import { Dispatch } from "redux";
@@ -21,17 +24,18 @@ export const errorProducList = (error: string) => {
   };
 };
 
-export const fetchData = (url: string) => {
+export const fetchData = (name: string) => {
   return (dispatch: Dispatch) => {
-    axios
-      .get(url)
-      .then((res) => {
-        const data: Item[] = res.data;
+    const fetchData = async () => {
+      const promise = repositoryFactory.get(name);
+      if (promise) {
+        const { data } = await promise.get();
         dispatch(setProductList(data));
-      })
-      .catch((err) => {
-        dispatch(errorProducList(err.toString()));
-      });
+      } else {
+        dispatch(errorProducList("Error"));
+      }
+    };
+    fetchData();
   };
 };
 
@@ -84,17 +88,18 @@ export const errorPostList = (list: PostItem[]) => {
     payload: list,
   };
 };
-export const fecthDataPost = (url: string) => {
+export const fecthDataPost = (name: string) => {
   return (dispatch: Dispatch) => {
-    axios
-      .get(url)
-      .then((res) => {
-        const data: PostItem[] = res.data;
+    const fetchData = async () => {
+      const promise = repositoryFactory.get(name);
+      if (promise) {
+        const { data } = await promise.get();
         dispatch(setPostList(data));
-      })
-      .catch((err) => {
-        dispatch(errorPostList(err.toString()));
-      });
+      } else {
+        dispatch(errorPostList([]));
+      }
+    };
+    fetchData();
   };
 };
 

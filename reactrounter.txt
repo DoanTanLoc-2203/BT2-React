@@ -54,3 +54,6 @@
 9. middelware: là một fuction chèn vào trước reducer và sau khi dispatch action,
                 + căn thiệp vào action trước khi nó gửi tới reducer, vd: cớ thể sửa đổi payload của action
 10. code splitting: là một trong những kỹ thuật giúp tăng tốc thời gian load Javascript của React App. 
+
+11. middelware:
+12. reponsitory : goi api

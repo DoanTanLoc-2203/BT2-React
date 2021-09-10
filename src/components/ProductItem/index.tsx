@@ -5,8 +5,8 @@ import {
   Flex,
   Image,
   Text,
-  useDisclosure,
   useColorModeValue,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React, { lazy, Suspense } from "react";
 import { useDispatch } from "react-redux";
