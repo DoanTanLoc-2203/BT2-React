@@ -1,18 +1,23 @@
 /** @format */
 
+import { FormControl, FormLabel, Switch, useColorMode } from "@chakra-ui/react";
 import * as React from "react";
-import { FormControl, FormLabel, Switch } from "@chakra-ui/react";
 
 export interface DarkModeProps {}
 
 export function DarkMode(props: DarkModeProps) {
+  const { toggleColorMode } = useColorMode();
   return (
     <div>
       <FormControl display="flex" alignItems="center">
-        <FormLabel htmlFor="email-alerts" mb="0" color="white">
+        <FormLabel htmlFor="email-alerts" mb="0">
           Dark Mode
         </FormLabel>
-        <Switch id="email-alerts" colorScheme="yellow" />
+        <Switch
+          id="email-alerts"
+          colorScheme="yellow"
+          onChange={toggleColorMode}
+        />
       </FormControl>
     </div>
   );

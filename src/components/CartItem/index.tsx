@@ -1,36 +1,49 @@
 /** @format */
 
 import {
-  Td,
-  Tr,
-  Avatar,
+  Button,
+  Image,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
+  Td,
+  Tr,
 } from "@chakra-ui/react";
-import * as React from "react";
-export interface CartItemProps {}
+import React from "react";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Cart } from "../../interface";
+import { deleteCart, updateCart } from "../../store/actionCreator";
+export interface CartItemProps {
+  data: Cart;
+}
 
 export function CartItem(props: CartItemProps) {
+  const dispatch = useDispatch();
+  const { deleteCart: del, updateCart: up } = bindActionCreators(
+    { deleteCart, updateCart },
+    dispatch,
+  );
   return (
     <Tr>
       <Td>
-        <Avatar
-          name="image"
-          src="https://www.wallpaperup.com/uploads/wallpapers/2015/09/04/799872/8d78f6b8720fa6359bc23e3c29188368-700.jpg"
-        />
+        <Image src={props.data.imageUrl} objectFit="fill" />
       </Td>
-      <Td>Lamboghini Aventador</Td>
-      <Td display="flex" justifyContent="center">
+      <Td>{props.data.name}</Td>
+      <Td>
         <NumberInput
           step={1}
-          defaultValue={1}
+          defaultValue={props.data.quantity}
           min={1}
           max={10}
-          w="20%"
-          focusBorderColor="#FFD700">
+          // w="40%"
+          m="auto"
+          focusBorderColor="#FFD700"
+          onChange={(valueString: string) =>
+            up(props.data.id, parseInt(valueString))
+          }>
           <NumberInputField />
           <NumberInputStepper>
             <NumberIncrementStepper />
@@ -38,7 +51,19 @@ export function CartItem(props: CartItemProps) {
           </NumberInputStepper>
         </NumberInput>
       </Td>
-      <Td isNumeric>400,999$</Td>
+      <Td isNumeric>{props.data.price}</Td>
+      <Td>
+        <Button
+          backgroundColor="red.500"
+          color="white"
+          _hover={{
+            color: "black",
+            backgroundColor: "#F2F2F2",
+          }}
+          onClick={() => del(props.data.id)}>
+          Delete
+        </Button>
+      </Td>
     </Tr>
   );
 }

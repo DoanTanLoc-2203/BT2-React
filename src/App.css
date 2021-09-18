@@ -4,7 +4,10 @@
   text-align: center;
   box-sizing: border-box;
 }
-
+.activeLink {
+  color: #ffd700;
+  font-weight: bold;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

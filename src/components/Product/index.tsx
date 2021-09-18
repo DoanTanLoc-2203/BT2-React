@@ -1,28 +1,27 @@
 /** @format */
 
-import * as React from "react";
+import React, { lazy, Suspense } from "react";
 import { Flex } from "@chakra-ui/react";
-import { GlobalData } from "../../App";
-import { ProductItem } from "../ProductItem";
-import { Item } from "../../services/getData";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/reducers";
+// import {ProductItem from "../ProductItem";
 
-export interface ProductProps {}
+const ProductItem = lazy(() => import("../ProductItem"));
 
-export function Product(props: ProductProps) {
+export default function Product() {
+  const productList = useSelector((state: RootState) => state.fillterSearch);
   return (
-    <GlobalData.Consumer>
-      {({ productData }) => (
-        <Flex
-          wrap="wrap"
-          justify="space-evenly"
-          backgroundColor="#020202"
-          pb="50px"
-          height="auto">
-          {productData.map((element: Item) => {
-            return <ProductItem key={element.id} dataItem={element} />;
-          })}
-        </Flex>
-      )}
-    </GlobalData.Consumer>
+    <Flex
+      wrap="wrap"
+      justify="space-evenly"
+      alignItems="flex-start"
+      pb="50px"
+      height="100%">
+      <Suspense fallback={null}>
+        {productList.map((element) => {
+          return <ProductItem key={element.id} data={element} />;
+        })}
+      </Suspense>
+    </Flex>
   );
 }

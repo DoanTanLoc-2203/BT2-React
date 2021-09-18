@@ -21,8 +21,18 @@ export interface Item {
   detail: Detail;
 }
 
-export async function getData(apiUrl: string) {
-  const response = await fetch(apiUrl);
-  const data: Item[] = await response.json();
-  return data;
+export interface Cart {
+  id: number;
+  imageUrl: string;
+  name: string;
+  quantity: number;
+  price: string;
+}
+
+export interface PostItem {
+  id: string;
+  name: string;
+  postat: string;
+  tag: string;
+  content: string;
 }

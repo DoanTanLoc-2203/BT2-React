@@ -1,58 +1,88 @@
 /** @format */
 
-import { Button, Flex, Image, Text, useDisclosure } from "@chakra-ui/react";
-import { Item } from "../../services/getData";
-import { ModalProduct } from "../ModalProduct";
+import {
+  Button,
+  Flex,
+  Image,
+  Text,
+  useColorModeValue,
+  useDisclosure,
+} from "@chakra-ui/react";
+import React, { lazy, Suspense } from "react";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Item } from "../../interface";
+// import { ModalProduct } from "../ModalProduct";
+import { addToCart } from "../../store/actionCreator";
 
 export interface ProductItemProps {
-  dataItem: Item;
+  data: Item;
 }
 
-export function ProductItem(props: ProductItemProps) {
+const ModalProduct = lazy(() => import("../ModalProduct"));
+
+export default function ProductItem(props: ProductItemProps) {
+  const bg = useColorModeValue("#f5f5f5", "#000316");
+  const color = useColorModeValue("black", "white");
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useDispatch();
+  const { addToCart: add } = bindActionCreators({ addToCart }, dispatch);
   return (
     <Flex
       flexDirection="column"
+      justifyContent="flex-start"
       w="500px"
       mt="20px"
       p="10px"
       borderRadius="10px"
-      backgroundColor="#292929"
-      border="1px solid white">
+      backgroundColor={bg}
+      color="white">
       <Image
         borderRadius="10px"
         boxSize="auto"
         objectFit="cover"
-        src={props.dataItem.imageUrl}
+        src={props.data.imageUrl}
         alt="car image"
+        fallbackSrc="https://via.placeholder.com/2048x1152.png"
       />
-      <Text fontSize="4xl" fontWeight="bold" color="white">
-        {props.dataItem.name}
+      <Text fontSize="4xl" fontWeight="bold" color={color}>
+        {props.data.name}
       </Text>
-      <Text fontSize="3xl" color="#FFD700">
-        Price: {props.dataItem.price}
+      <Text fontSize="3xl" color={color}>
+        Price: {props.data.price}
       </Text>
       <Flex justify="center">
-        <Button backgroundColor="#FFD700" m="5px">
+        <Button
+          backgroundColor="#FFD700"
+          m="5px"
+          color="black"
+          onClick={() => {
+            add({
+              id: props.data.id,
+              imageUrl: props.data.imageUrl,
+              name: props.data.name,
+              quantity: 1,
+              price: props.data.price,
+            });
+          }}>
           Add to Cart
         </Button>
         <Button
           backgroundColor="#020202"
           color="white"
           m="5px"
-          onClick={onOpen}
+          onClick={() => {
+            onOpen();
+          }}
           _hover={{ color: "black", backgroundColor: "#E2E8F0" }}>
           Detail
         </Button>
       </Flex>
-      <ModalProduct
-        isOpen={isOpen}
-        onClose={onClose}
-        name={props.dataItem.name}
-        price={props.dataItem.price}
-        detail={props.dataItem.detail}
-        imageUrl={props.dataItem.imageUrl}
-      />
+      <Suspense fallback={null}>
+        {isOpen ? (
+          <ModalProduct isOpen={isOpen} onClose={onClose} data={props.data} />
+        ) : null}
+      </Suspense>
     </Flex>
   );
 }

@@ -11,8 +11,9 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { FaShoppingCart } from "react-icons/fa";
-import { ModalCart } from "../ModalCart";
 export interface InfoProps {}
+
+const ModalCart = React.lazy(() => import("../ModalCart"));
 
 export function Info(props: InfoProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -22,12 +23,13 @@ export function Info(props: InfoProps) {
         <IconButton
           mr="10px"
           backgroundColor="#FFD700"
-          color="black"
           aria-label="Search database"
           icon={<FaShoppingCart />}
           onClick={onOpen}
         />
-        <ModalCart isOpen={isOpen} onClose={onClose} />
+        <React.Suspense fallback={null}>
+          {isOpen ? <ModalCart isOpen={isOpen} onClose={onClose} /> : null}
+        </React.Suspense>
       </WrapItem>
       <WrapItem>
         <Flex flexDirection="column">
@@ -35,9 +37,7 @@ export function Info(props: InfoProps) {
             name="Dan Abrahmov"
             src="https://rockandbluescruise.com/wp-content/uploads/2020/10/tieu-su-ronaldo.jpg"
           />
-          <Text fontSize="sm" color="white">
-            Hello, Loc
-          </Text>
+          <Text fontSize="sm">Hello, Loc</Text>
         </Flex>
       </WrapItem>
     </Wrap>

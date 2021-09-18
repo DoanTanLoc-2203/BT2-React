@@ -1,0 +1,219 @@
+{
+  "product": [
+    {
+      "id": 1,
+      "name": "Lamboghini Aventador SVJ",
+      "price": "517000$",
+      "imageUrl": "https://a-static.besthdwallpaper.com/lamborghini-aventador-svj-2018-04-hinh-nen-2048x1152-63677_49.jpg",
+      "detail": {
+        "overView": "Lamborghini created the Aventador SVJ to embrace challenges head-on, combining cutting-edge technology with extraordinary design, while always refusing to compromise. In a future driven by technology, it’s easy to lose the genuine thrill of driving. But in the future shaped by Lamborghini, this won’t be left behind, because there will always be a driver behind the wheel.",
+        "color": ["green", "white", "black", "red", "blue"],
+        "technical": {
+          "displayment": "6498 cm³",
+          "maxPower": "566 kW (770 CV) at 8.500 rpm",
+          "topspeed": ">350 km/h",
+          "acceleration": "2.8 s"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "name": "Lamboghini Huricán EVO",
+      "price": "328000$",
+      "imageUrl": "https://images.wallpaperscraft.com/image/lamborghini_huracan_lp610_4_green_side_view_110462_2048x1152.jpg",
+      "detail": {
+        "overView": "The Huracán EVO is the evolution of the most successful V10-powered Lamborghini ever. The result of fine-tuning and refining existing features, combined with new design solutions that increase performance, the car stands out for its ability to anticipate and cater to the driver’s behavior, expectations and desires.",
+        "color": ["orange", "green", "black", "white"],
+        "technical": {
+          "displayment": "5,204 cm³ (317.57 cu in)",
+          "maxPower": "470/640 at 8000 rpm",
+          "topspeed": "310 km/h",
+          "acceleration": "3.0 s"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "name": "Lamboghini URUS",
+      "price": "222000$",
+      "imageUrl": "https://cdnimg.vietnamplus.vn/uploaded/ngtnnn/2021_05_30/3005su.jpg",
+      "detail": {
+        "overView": "The soul of a super sports car and the functionality of an SUV: Lamborghini Urus is the first Super Sport Utility Vehicle in the world. With extreme proportions, breathtaking design, extraordinary driving dynamics and heart-pounding performance, Urus represents freedom in its quintessential state. You can experience any road, from track to the sand, ice, gravel or rocks, thus unlocking any road. You can explore any new terrain, thus expressing yourself.",
+        "color": ["orange", "green", "black", "white"],
+        "technical": {
+          "displayment": "3,996 cm³ (243.85 cu in)",
+          "maxPower": "650 CV (478 kW) @ 6,000 rpm",
+          "topspeed": "305 km/h",
+          "acceleration": "3.6 s"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "name": "Lamboghini Sián FKP 37",
+      "price": "2640000$",
+      "imageUrl": "https://www.motortrend.com/uploads/sites/5/2021/03/2021-Lamborghini-Sian-41.jpg",
+      "detail": {
+        "overView": "The Sián FKP 37 is the first super sports car powered by a V12 engine and hybrid technology based on supercapacitors. Its powerful V12 engine, coupled with electric boost, creates an unrivaled gem of engineering and technology. Sián—lightning in Bolognese—is a name that captures the car’s true character, foremost its speed, which exceeds 220 mph (350 km/h).",
+        "color": ["orange", "green", "black", "white"],
+        "technical": {
+          "displayment": "6,498 cm³ (396.5 cu in)",
+          "maxPower": "785 CV (577 kW) @ 8,500 rpm",
+          "topspeed": "355 km/h",
+          "acceleration": "<2,8 s"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "name": "Lamboghini Sián Roadster",
+      "price": "3700000$",
+      "imageUrl": "https://www.automobilemag.com/uploads/sites/11/2020/07/2021_Lamborghini_Sian_Roadster-front-motion.jpg",
+      "detail": {
+        "overView": "The first open-top hybrid Lamborghini super sports car to feature a supercapacitor, the Sián Roadster roars with electrified intensity, resonating with the inimitable V12 sound from the most powerful Lamborghini engine to date. Limited to only 19 examples, the Sián Roadster advances hybrid technology with the world’s first use of a supercapacitor in a materials-science application unique to the industry.",
+        "color": ["orange", "green", "black", "white"],
+        "technical": {
+          "displayment": "6,498 cm³ (396.5 cu in)",
+          "maxPower": "819 CV (602 kW) @ 8,500 rpm",
+          "topspeed": ">350 km/h (217 mph)",
+          "acceleration": "<2,8 s"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "name": "Lamboghini Countach LPI",
+      "price": "2640000$",
+      "imageUrl": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lamborghini-countach-lpi-800-4-111-1628616858.jpg",
+      "detail": {
+        "overView": "Fifty years since its unveiling at the Geneva Motor Show, the legendary Lamborghini Countach is making headlines again with a limited-series hybrid supercar celebrating the visionary design that revolutionized modern sports cars forever and laid the foundations of the Lamborghini legacy. This is the new Countach LPI 800-4. Inspired by the past, made for the future.",
+        "color": ["orange", "green", "black", "white"],
+        "technical": {
+          "displayment": "6,498 cm³ (396.5 cu in)",
+          "maxPower": "780 CV (574 kW) @ 8,500 rpm",
+          "topspeed": "355 km/h",
+          "acceleration": "2,8 s"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "name": "McLaren 720S",
+      "price": "302000$",
+      "imageUrl": "https://data.1freewallpapers.com/download/mclaren-black-765lt-2020-4k-5k-cars-2048x1152.jpg",
+      "detail": {
+        "overView": "The contours of the 720S are distinctly McLaren, yet the details are boldly different. Our designers took inspiration from the Great White Shark, a beautifully sleek yet brutally efficient hunting machine. The resulting design for the 720S is exquisite form following ingenious function. The smooth flow of the exterior lines manipulates onrushing air to reduce drag and cool the engine. Slim pillars on the teardrop-shaped cabin allow for the extraordinary glass canopy that floods the interior with daylight and offers unrivalled visibility.",
+        "color": ["orange", "green", "black", "white"],
+        "technical": {
+          "displayment": "6,498 cm³ (396.5 cu in)",
+          "maxPower": "780 CV (574 kW) @ 8,500 rpm",
+          "topspeed": "355 km/h",
+          "acceleration": "2,8 s"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "name": "Bugati Veyron",
+      "price": "1900000$",
+      "imageUrl": "https://cms-i.autodaily.vn/du-lieu/2021/06/03/no-48-bugatti-veyron-super-sport-for-sale-3.jpg",
+      "detail": {
+        "overView": "Perhaps the greatest supercar ever, the Veyron 16.4 was for those with all the money in the world and a desire to go blisteringly fast; we say \"was,\" because the Veyron is no longer sold and its replacement, the Chiron, is not yet available. With an 8.0-liter turbo-quad W-16 engine and all-wheel drive; the Veyron makes 1001 hp and has a 200-mph-plus top speed. For topless fun, see the Grand Sport with its targa top.",
+        "color": ["orange", "green", "black", "white"],
+        "technical": {
+          "displayment": "6,498 cm³ (396.5 cu in)",
+          "maxPower": "780 CV (574 kW) @ 8,500 rpm",
+          "topspeed": "355 km/h",
+          "acceleration": "2,8 s"
+        }
+      }
+    },
+    {
+      "id": 9,
+      "name": "Bugati Chiron",
+      "price": "2900000$",
+      "imageUrl": "https://images.hdqwalls.com/download/bugatti-chiron-sport-2018-xd-2048x1152.jpg",
+      "detail": {
+        "overView": "Volkswagen’s acquisition of the Bugatti name in 1998 sparked the creation of multiple outlandish concepts, the two-door EB 118, four-door EB 218 and the more recognisable 18/3 Chiron, all with a proposed 6.3-litre, 545bhp W18. The latter was the world’s first glimpse at the Veyron, with it later becoming the 16/4 Veyron concept before morphing into the production car we see today. ",
+        "color": ["orange", "green", "black", "white"],
+        "technical": {
+          "displayment": "6,498 cm³ (396.5 cu in)",
+          "maxPower": "780 CV (574 kW) @ 8,500 rpm",
+          "topspeed": "355 km/h",
+          "acceleration": "2,8 s"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "name": "Ferrari 488 Pista",
+      "price": "330000$",
+      "imageUrl": "https://st.automobilemag.com/uploads/sites/11/2019/05/Ferrari-488-Pista-How-Id-Spec-It-4.jpg",
+      "detail": {
+        "overView": "Volkswagen’s acquisition of the Bugatti name in 1998 sparked the creation of multiple outlandish concepts, the two-door EB 118, four-door EB 218 and the more recognisable 18/3 Chiron, all with a proposed 6.3-litre, 545bhp W18. The latter was the world’s first glimpse at the Veyron, with it later becoming the 16/4 Veyron concept before morphing into the production car we see today. ",
+        "color": ["orange", "green", "black", "white"],
+        "technical": {
+          "displayment": "6,498 cm³ (396.5 cu in)",
+          "maxPower": "780 CV (574 kW) @ 8,500 rpm",
+          "topspeed": "355 km/h",
+          "acceleration": "2,8 s"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "name": "Koenigsegg Agera",
+      "price": "3800000$",
+      "imageUrl": "https://images.hdqwalls.com/download/koenigsegg-hd-2048x1152.jpg",
+      "detail": {
+        "overView": "Volkswagen’s acquisition of the Bugatti name in 1998 sparked the creation of multiple outlandish concepts, the two-door EB 118, four-door EB 218 and the more recognisable 18/3 Chiron, all with a proposed 6.3-litre, 545bhp W18. The latter was the world’s first glimpse at the Veyron, with it later becoming the 16/4 Veyron concept before morphing into the production car we see today. ",
+        "color": ["orange", "green", "black", "white"],
+        "technical": {
+          "displayment": "6,498 cm³ (396.5 cu in)",
+          "maxPower": "780 CV (574 kW) @ 8,500 rpm",
+          "topspeed": "355 km/h",
+          "acceleration": "2,8 s"
+        }
+      }
+    },
+    {
+      "id": 12,
+      "name": "Lamboghini Veneno",
+      "price": "4500000$",
+      "imageUrl": "https://www.motortrend.com/uploads/sites/11/2020/01/2015-Lamborghini-Veneno-Roadster-16.jpg",
+      "detail": {
+        "overView": "Volkswagen’s acquisition of the Bugatti name in 1998 sparked the creation of multiple outlandish concepts, the two-door EB 118, four-door EB 218 and the more recognisable 18/3 Chiron, all with a proposed 6.3-litre, 545bhp W18. The latter was the world’s first glimpse at the Veyron, with it later becoming the 16/4 Veyron concept before morphing into the production car we see today. ",
+        "color": ["orange", "green", "black", "white"],
+        "technical": {
+          "displayment": "6,498 cm³ (396.5 cu in)",
+          "maxPower": "780 CV (574 kW) @ 8,500 rpm",
+          "topspeed": "355 km/h",
+          "acceleration": "2,8 s"
+        }
+      }
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "name": "Doan Tan Loc",
+      "postat": "12:20:59 08/09/2021",
+      "tag": "Review",
+      "content": " Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti"
+    },
+    {
+      "id": "2",
+      "name": "Nguyen Van A",
+      "postat": "12:20:59 08/09/2021",
+      "tag": "News",
+      "content": " Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+    },
+    {
+      "id": "3",
+      "name": "Nguyen Van B",
+      "postat": "12:20:59 08/09/2021",
+      "tag": "Other",
+      "content": " Tuyet voi ong mat troi"
+    }
+  ]
+}

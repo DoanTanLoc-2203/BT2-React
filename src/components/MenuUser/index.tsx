@@ -1,5 +1,6 @@
 /** @format */
 import { Image, Wrap } from "@chakra-ui/react";
+import React from "react";
 import { ButtonGroup } from "../ButtonGroup/indext";
 import { DarkMode } from "../DarkMode";
 import { Info } from "../Info";
@@ -11,7 +12,6 @@ export function MenuUser(props: MenuProps) {
     <Wrap
       height="auto"
       justify="space-between"
-      backgroundColor="#020202"
       align="center"
       p="10px"
       borderBottom="5px solid #FFD700">

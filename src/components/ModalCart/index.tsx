@@ -16,14 +16,25 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import * as React from "react";
+import React from "react";
+import { useSelector } from "react-redux";
+import { Cart } from "../../interface";
+import { RootState } from "../../store/reducers";
 import { CartItem } from "../CartItem";
 export interface ModalCartProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export function ModalCart(props: ModalCartProps) {
+export default function ModalCart(props: ModalCartProps) {
+  const data: Cart[] = useSelector((state: RootState) => state.cartList);
+  const totalCart = () => {
+    let total: number = 0;
+    for (let i = 0; i < data.length; i++) {
+      total += parseFloat(data[i].price.substring(0, data[i].price.length - 1));
+    }
+    return total.toString() + "$";
+  };
   return (
     <Modal isOpen={props.isOpen} onClose={props.onClose} size="6xl">
       <ModalOverlay />
@@ -38,23 +49,23 @@ export function ModalCart(props: ModalCartProps) {
                 <Th>Name</Th>
                 <Th textAlign="center">Quantity</Th>
                 <Th isNumeric>Price</Th>
+                <Th>Action</Th>
               </Tr>
             </Thead>
             <Tbody>
-              <CartItem />
-              <CartItem />
-              <CartItem />
-              <CartItem />
-              <CartItem />
+              {data.map((element) => {
+                return <CartItem key={element.id} data={element} />;
+              })}
             </Tbody>
             <Tfoot>
               <Tr>
-                <Th></Th>
-                <Th></Th>
+                {/* <Th></Th>
+                <Th></Th> */}
                 <Th fontSize="2xl">TOTAL:</Th>
                 <Th isNumeric fontSize="2xl">
-                  200$
+                  {totalCart()}
                 </Th>
+                <Th></Th>
               </Tr>
             </Tfoot>
           </Table>
