@@ -35,6 +35,22 @@ export const getProduct = (dispatch: Dispatch) => {
   };
   fecthData();
 };
+export const getPost = () => {
+  return (dispatch: Dispatch) => {
+    const fecthData = async () => {
+      try {
+        const promise = repositoryFactory.get("posts");
+        if (promise) {
+          const { data } = await promise.get();
+          dispatch(setPostList(data));
+        }
+      } catch {
+        dispatch(errorPostList([]));
+      }
+    };
+    fecthData();
+  };
+};
 
 export const fillterProductList = (text: string, list: Item[]) => {
   return {
@@ -77,20 +93,20 @@ export const errorPostList = (list: PostItem[]) => {
     payload: list,
   };
 };
-export const getPost = (dispatch: Dispatch) => {
-  const fecthData = async () => {
-    try {
-      const promise = repositoryFactory.get("posts");
-      if (promise) {
-        const { data } = await promise.get();
-        dispatch(setPostList(data));
-      }
-    } catch {
-      dispatch(errorPostList([]));
-    }
-  };
-  fecthData();
-};
+// export const getPost = (dispatch: Dispatch) => {
+//   const fecthData = async () => {
+//     try {
+//       const promise = repositoryFactory.get("posts");
+//       if (promise) {
+//         const { data } = await promise.get();
+//         dispatch(setPostList(data));
+//       }
+//     } catch {
+//       dispatch(errorPostList([]));
+//     }
+//   };
+//   fecthData();
+// };
 
 export const addToPost = (data: PostItem) => {
   return {

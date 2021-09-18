@@ -8,6 +8,7 @@ import {
 import React, { lazy, Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { bindActionCreators } from "redux";
 import "./App.css";
 import { Footer } from "./components/Footer";
 import { MenuUser } from "./components/MenuUser";
@@ -25,9 +26,10 @@ const theme = extendTheme({ config });
 
 function App() {
   const dispatch = useDispatch();
+  const { getPost: getPostList } = bindActionCreators({ getPost }, dispatch);
   useEffect(() => {
     getProduct(dispatch);
-    getPost(dispatch);
+    getPostList();
   }, [dispatch]);
   return (
     <ChakraProvider>
